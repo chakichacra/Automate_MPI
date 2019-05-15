@@ -16,11 +16,10 @@ autom.completer()
 
 for etat in autom.listEtat:
 	print(etat.transiParMot('a'))
-"""
+
 for x in autom.listEtat:
 	print(x.alphaReconnu)
 
 print(autom.isComplet())
 
 autom.affiche()
-"""

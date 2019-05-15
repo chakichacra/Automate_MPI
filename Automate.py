@@ -84,10 +84,6 @@ class Automate(object):
 
 			
 
-		
-
-
-
 
 
 	def isDeterministe(self):
@@ -116,7 +112,6 @@ class Automate(object):
 
 
 	def tableauTransi(self):
-		#tablal = [][] 	#pour generer  un tablal ou des tableaux  [ligne][colonne]
 
 		
 		tablal = []
@@ -164,11 +159,19 @@ class Automate(object):
 		return tablal
 
 	def checkSync(self):
-		if ('*' in self.alphabet):
+		'''if ('*' in self.alphabet):
 			self.est_synchrone = True
 			return True
 		self.est_synchrone = False
+		return False'''
+
+		for etat in self.listEtat:
+			if (etat.transiParMot('*') != []):
+				self.est_synchrone = True
+				return True
+		self.est_synchrone = False
 		return False
+
 
 
 	def completer(self):
@@ -177,8 +180,8 @@ class Automate(object):
 
 		poubelle = Etat(self.nmbrEtat)
 
-		temp_transi_manquante = []
 		for etat in self.listEtat:
+			temp_transi_manquante = []
 			for alpha in self.alphabet:
 				if (alpha not in etat.alphaReconnu):
 					temp_transi_manquante.append(alpha)
